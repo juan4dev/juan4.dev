@@ -1,0 +1,23 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+const EXPERIENCE = [
+  {
+    date: "Currently...",
+    title: "Full Stack Angular .NET Developer",
+    company: "Bilbomatica",
+    description: `
+      Developing and maintaining web applications with Angular and .NET, focusing on RESTful APIs, clean code principles, and efficient CI/CD processes using Azure DevOps and GitLab. Experienced in SQL Server. Contributing to multiple projects for the European Union.
+    `,
+  },
+];
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>
