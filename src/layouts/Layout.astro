@@ -19,9 +19,22 @@ const { description, title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href="https://juan4.dev/" />
+    <meta
+      property="og:title"
+      content="Juan4dev - Fullstack Developer | .NET & Angular Expert"
+    />
+    <meta
+      property="og:description"
+      content="Juan4dev is a Fullstack Developer specializing in .NET and Angular. Explore his projects, tips on clean code, and best practices."
+    />
+    <meta property="og:url" content="https://juan4.dev" />
+    <meta property="og:type" content="website" />
+
     <ViewTransitions />
   </head>
 
