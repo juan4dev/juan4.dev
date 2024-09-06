@@ -2,7 +2,7 @@
 
 **También puedes seguirme en... 👇**
 
-* YouTube 📹 : https://www.youtube.com/c/juan4dev?sub_confirmation=1
+* YouTube 📹 : https://www.youtube.com/@juan4dev
 * Twitter 🐦 : https://twitter.com/juan4dev
 * Instagram 📸 : https://www.instagram.com/juan4dev/
 * Github 🐙: https://github.com/juan4dev
