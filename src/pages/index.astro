@@ -6,10 +6,9 @@ import {
   Hero,
   SectionContainer,
   TitleSection,
+  Projects,
 } from "@/components";
-import Briefcase from "@/components/icons/Briefcase.astro";
-import ProfileCheck from "@/components/icons/ProfileCheck.astro";
-// import Projects from "@/components/Projects.astro"
+import { Briefcase, ProfileCheck, CodeIcon } from "@/components/icons";
 ---
 
 <Layout
@@ -29,13 +28,13 @@ import ProfileCheck from "@/components/icons/ProfileCheck.astro";
         <Experience />
       </SectionContainer>
 
-      <!-- <SectionContainer id="proyectos">
-      <TitleSection>
-        <CodeIcon class="size-7" />
-        Proyectos
-      </TitleSection>
-      <Projects />
-    </SectionContainer> -->
+      <SectionContainer id="projects">
+        <TitleSection>
+          <CodeIcon class="size-7" />
+          Projects
+        </TitleSection>
+        <Projects />
+      </SectionContainer>
 
       <SectionContainer id="about-me">
         <TitleSection>
