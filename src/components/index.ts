@@ -5,3 +5,5 @@ export { default as TitleSection } from './TitleSection.astro';
 export { default as SectionContainer } from './SectionContainer.astro';
 export { default as Footer } from './Footer.astro';
 export { default as Header } from './Header.astro';
+export { default as Projects } from './Projects.astro';
+export { default as LinkButton } from './LinkButton.astro';
