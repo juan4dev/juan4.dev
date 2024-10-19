@@ -6,3 +6,4 @@ export { default as NextJS } from "@/components/icons/NextJS.astro";
 export { default as Tailwind } from "@/components/icons/Tailwind.astro";
 export { default as Link } from "@/components/icons/Link.astro";
 export { default as AstroIcon } from "@/components/icons/AstroIcon.astro";
+export { default as Home } from "@/components/icons/Home.astro";

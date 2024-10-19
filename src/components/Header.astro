@@ -1,7 +1,14 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
+import { Home } from "@/components/icons";
 
 const navItems = [
+  {
+    icon: Home,
+    label: "home",
+    url: "/#home",
+  },
+
   {
     title: "Experience",
     label: "experience",
@@ -16,6 +23,11 @@ const navItems = [
     title: "About me",
     label: "about-me",
     url: "/#about-me",
+  },
+  {
+    title: "Contact",
+    label: "contact",
+    url: "mailto:hello@juan4.dev"
   },
 ];
 ---
@@ -34,6 +46,7 @@ const navItems = [
           href={link.url}
         >
           {link.title}
+          {link.icon && <link.icon />}
         </a>
       ))
     }
@@ -50,10 +63,13 @@ const navItems = [
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
+            const icon = item.querySelector("svg path");
             if (item.getAttribute("aria-label") == entry.target.id) {
               item.classList.add("text-blue-500");
+              if (icon) icon.setAttribute("class", "fill-current text-blue-500");
             } else {
               item.classList.remove("text-blue-500");
+              if (icon) icon.setAttribute("class", "fill-current text-gray-600 dark:text-white");
             }
           });
         }
