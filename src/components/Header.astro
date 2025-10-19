@@ -104,27 +104,44 @@ const navItems = [
     animation: nav-shadow 1s linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
-  }
-
-  .nav-bg-initial {
-    background-color: rgba(255, 255, 255, 0);
-    background-color: rgba(31, 41, 55, 0);
-  }
-
-  .nav-bg-final {
-    box-shadow:
-      0 10px 15px rgba(0, 0, 0, 0.1),
-      0 4px 6px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
-    ring-color: rgba(255, 255, 255, 0.1);
+    will-change: background-color, box-shadow, backdrop-filter, border-color;
   }
 
   @keyframes nav-shadow {
-    0% {
-      @apply nav-bg-initial;
+    from {
+      background-color: rgba(255, 255, 255, 0);
+      box-shadow: 0 0 #0000;
+      backdrop-filter: blur(0);
+      border-bottom-color: transparent;
     }
     to {
-      @apply nav-bg-final;
+      background-color: rgba(255, 255, 255, 0.6);
+      box-shadow:
+        0 10px 15px rgba(0, 0, 0, 0.1),
+        0 4px 6px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .dark header nav {
+    animation-name: nav-shadow-dark;
+  }
+
+  @keyframes nav-shadow-dark {
+    from {
+      background-color: rgba(31, 41, 55, 0);
+      box-shadow: 0 0 #0000;
+      backdrop-filter: blur(0);
+      border-bottom-color: transparent;
+    }
+    to {
+      background-color: rgba(17, 24, 39, 0.6);
+      box-shadow:
+        0 10px 15px rgba(0, 0, 0, 0.4),
+        0 4px 6px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
   }
 </style>
