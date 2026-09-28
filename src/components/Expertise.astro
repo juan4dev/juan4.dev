@@ -1,0 +1,66 @@
+---
+const areas = [
+  {
+    number: "01",
+    title: "Web applications",
+    stack: "Angular · .NET",
+    description:
+      "Developing and maintaining Angular interfaces and .NET services as part of full-stack applications.",
+  },
+  {
+    number: "02",
+    title: "APIs & data",
+    stack: "REST · SQL Server",
+    description:
+      "Working with RESTful APIs and SQL Server, with clean code as a consistent focus.",
+  },
+  {
+    number: "03",
+    title: "Delivery",
+    stack: "Azure DevOps · GitLab",
+    description:
+      "Contributing to CI/CD processes across projects for the European Union.",
+  },
+];
+---
+
+<div class="mb-8 max-w-2xl">
+  <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-300">
+    What I work on
+  </p>
+  <h2 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+    From interface to delivery
+  </h2>
+  <p class="mt-4 text-gray-600 dark:text-gray-300">
+    My day-to-day work connects Angular, .NET, data, and the processes that get
+    web applications into production.
+  </p>
+</div>
+
+<ul class="grid gap-4 md:grid-cols-3">
+  {
+    areas.map((area) => (
+      <li class="rounded-2xl border border-gray-200 bg-white/70 p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md dark:border-gray-700 dark:bg-gray-900/60">
+        <span aria-hidden="true" class="text-sm font-semibold text-blue-600 dark:text-blue-300">
+          {area.number}
+        </span>
+        <h3 class="mt-5 text-xl font-semibold text-gray-900 dark:text-white">
+          {area.title}
+        </h3>
+        <p class="mt-1 text-sm font-medium text-blue-700 dark:text-blue-300">
+          {area.stack}
+        </p>
+        <p class="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+          {area.description}
+        </p>
+      </li>
+    ))
+  }
+</ul>
+
+<a
+  href="#experience"
+  class="mt-6 inline-flex items-center gap-2 rounded-sm font-medium text-blue-700 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500 dark:text-blue-300"
+>
+  See my experience <span aria-hidden="true">→</span>
+</a>
