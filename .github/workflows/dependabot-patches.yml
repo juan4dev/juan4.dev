@@ -1,0 +1,63 @@
+name: Dependabot patch updates
+
+# This privileged workflow only reads Dependabot metadata and GitHub checks.
+# It never checks out or executes code from a pull request.
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions: {}
+
+concurrency:
+  group: dependabot-patches-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  merge-patch:
+    if: >-
+      github.repository == 'juan4dev/juan4.dev' &&
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - name: Read verified Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@21025c705c08248db411dc16f3619e6b5f9ea21a # v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for required checks and merge this exact patch
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          # Checks may take a few seconds to be registered after the PR opens.
+          for attempt in {1..30}; do
+            checks=$(gh pr checks "$PR_NUMBER" --required --json name 2>/dev/null || true)
+            if jq -e 'map(.name) | index("build") != null and index("dependency-review") != null' <<< "${checks:-[]}" >/dev/null; then
+              break
+            fi
+            sleep 10
+          done
+          jq -e 'map(.name) | index("build") != null and index("dependency-review") != null' <<< "${checks:-[]}" >/dev/null
+          gh pr checks "$PR_NUMBER" --required --watch --interval 10 --fail-fast
+          gh pr merge "$PR_NUMBER" --squash --match-head-commit "$EXPECTED_HEAD"
+
+      - name: Deploy the merged patch
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        # GITHUB_TOKEN merges do not reliably trigger a push workflow.
+        run: gh workflow run deploy.yml --ref main
