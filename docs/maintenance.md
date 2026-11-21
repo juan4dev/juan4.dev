@@ -34,6 +34,15 @@ bypass for GitHub Actions.
 Do not bypass a failing install with `--force` or `--legacy-peer-deps`. A major
 update can stay open while waiting for compatible upstream packages.
 
+## Deferred migration
+
+TypeScript 7.0.2 is intentionally deferred: the latest stable `@astrojs/check`
+(0.9.12, checked on 2026-11-21) declares `typescript: ^5.0.0 || ^6.0.0` as its
+peer dependency. PR #105 should be revisited when upstream supports TypeScript 7.
+
+Actions are pinned to release commit SHAs with version comments so Dependabot
+can propose and validate future changes instead of silently following a major tag.
+
 For local verification (Node 24):
 
 ```sh
